@@ -29,11 +29,22 @@ export default NextAuth({
             role: "user",
             receivingEmail: user.email,
             shouldReceiveEmails: false,
+            lastActiveAt: new Date(),
           });
 
           await newUser.save();
         } catch (error) {
           console.error("Error saving new user:", error);
+          return false;
+        }
+      } else {
+        try {
+          await User.updateOne(
+            { email: user.email },
+            { lastActiveAt: new Date() }
+          );
+        } catch (error) {
+          console.error("Error updating existing user:", error);
           return false;
         }
       }

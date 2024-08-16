@@ -24,6 +24,9 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    lastActiveAt: {
+      type: Date,
+    },
   },
   {
     timestamps: true,
