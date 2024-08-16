@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { useSession, signIn, signOut } from "next-auth/react";
 
 export default function Sidebar() {
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
 
   return (
     <div>
