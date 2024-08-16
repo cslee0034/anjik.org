@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import mongoConnect from "../../../lib/mongodb";
 import Product from "../../../models/Product";
 import PLATFORM from "../../../const/platform";
+import mongoConnect from "../../../lib/mongodb";
 
 export default async function handler(
   req: NextApiRequest,

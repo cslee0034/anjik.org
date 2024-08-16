@@ -136,7 +136,7 @@ export default function Home() {
                         </TableRow>
                       ))
                     : results.map((result: any) => (
-                        <TableRow key={result.id}>
+                        <TableRow key={result._id}>
                           <TableCell>
                             <Image
                               alt="Product image"

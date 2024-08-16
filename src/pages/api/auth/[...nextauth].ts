@@ -1,10 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-<<<<<<< HEAD
 import mongoConnect from "../../../lib/mongodb";
-=======
-import mongoConnect from "../../../libs/mongodb";
->>>>>>> feature/login
 import User from "../../../models/User";
 
 export default NextAuth({

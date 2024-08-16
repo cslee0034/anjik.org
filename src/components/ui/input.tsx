@@ -1,10 +1,6 @@
 import * as React from "react";
-<<<<<<< HEAD
-import { cn } from "@/lib/utils";
-=======
 
-import { cn } from "@/libs/utils";
->>>>>>> feature/login
+import { cn } from "@/lib/utils";
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {}
