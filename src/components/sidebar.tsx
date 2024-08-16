@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CircleUser, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
   Sheet,
   SheetClose,
@@ -7,44 +7,40 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useUserStore } from "../stores/useUserStore";
+import { useSession, signIn, signOut } from "next-auth/react";
 
-export default function Sidebar({ isLoggedIn }: { isLoggedIn: boolean }) {
-  const userIfo = useUserStore((state) => state.userInfo);
+export default function Sidebar() {
+  const { data: session, status } = useSession();
 
   return (
     <div>
-      {isLoggedIn ? (
+      {session ? (
         <div className="hidden md:flex align-middle">
-          <p className="flex items-center justify-center mx-2">
-            {userIfo?.firstName}
-          </p>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
-                <CircleUser className="h-5 w-5" />
-                <span className="sr-only">Toggle user menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Button asChild variant="outline" className="mx-1">
+            <Link href="/profile">내 정보</Link>
+          </Button>
+          <Button
+            asChild
+            variant="outline"
+            className="mx-1"
+            onClick={() => {
+              signOut;
+            }}
+          >
+            <Link href="/api/auth/signout">로그아웃</Link>
+          </Button>
         </div>
       ) : (
         <div className="hidden md:flex">
-          <Button asChild variant="secondary" className="mx-1">
-            <Link href="/login">Login</Link>
+          <Button
+            asChild
+            variant="secondary"
+            className="mx-1"
+            onClick={() => {
+              signIn;
+            }}
+          >
+            <Link href="/api/auth/signin">로그인</Link>
           </Button>
         </div>
       )}
@@ -82,22 +78,35 @@ export default function Sidebar({ isLoggedIn }: { isLoggedIn: boolean }) {
               </Link>
             </SheetClose>
             <div />
-            {isLoggedIn ? (
+            {session ? (
               <>
                 <SheetClose asChild>
-                  <Button asChild className="bg-black">
-                    <Link href="/my-account">My Account</Link>
+                  <Button asChild variant="outline">
+                    <Link href="/profile">내 정보</Link>
                   </Button>
                 </SheetClose>
-                <Button asChild variant="outline">
-                  <Link href="/logout">Logout</Link>
+                <Button
+                  asChild
+                  variant="outline"
+                  onClick={() => {
+                    signOut;
+                  }}
+                >
+                  <Link href="/api/auth/signout">로그아웃</Link>
                 </Button>
               </>
             ) : (
               <>
                 <SheetClose asChild>
-                  <Button asChild variant="outline" className="mx-1">
-                    <Link href="/login">Login</Link>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="mx-1"
+                    onClick={() => {
+                      signIn;
+                    }}
+                  >
+                    <Link href="/api/auth/signin">로그인</Link>
                   </Button>
                 </SheetClose>
               </>
