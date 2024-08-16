@@ -5,7 +5,7 @@ export default function NotFount() {
   const router = useRouter();
 
   return (
-    <div className="container relative flex h-full flex-col items-center justify-center text-center sm:py-32">
+    <div className="container relative flex h-full flex-col items-center justify-center text-center py-32">
       <p className="text-2xl font-bol">404</p>
       <h1 className="mt-2 text-3xl font-medium">페이지를 찾을 수 없습니다</h1>
       <div className="flex mt-6">

@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <>
       <Tabs defaultValue="all" className="overflow-hidden">
-        <div className="flex items-center">
+        <div className="flex items-center py-1 px-1">
           <TabsList>
             <TabsTrigger value="all">All</TabsTrigger>
             <TabsTrigger value="active">알리</TabsTrigger>
@@ -66,7 +66,7 @@ export default function Home() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="w-[100px]">
+                    <TableHead className="w-[150px]">
                       <span className="sr-only">Image</span>
                     </TableHead>
                     <TableHead className="hidden sm:table-cell">품목</TableHead>
@@ -83,9 +83,9 @@ export default function Home() {
                       <Image
                         alt="Product image"
                         className="aspect-square rounded-md object-cover"
-                        height="64"
-                        src="/placeholder.svg"
-                        width="64"
+                        height="96"
+                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1399&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        width="96"
                       />
                     </TableCell>
                     <TableCell className="font-medium hidden sm:table-cell">
@@ -93,7 +93,7 @@ export default function Home() {
                     </TableCell>
                     <TableCell className="font-medium">샌들</TableCell>
                     <TableCell>
-                      <Badge variant="ali">AliExpress</Badge>
+                      <Badge variant="ali">Ali</Badge>
                     </TableCell>
                     <TableCell className="hidden sm:table-cell">-</TableCell>
                   </TableRow>
@@ -102,9 +102,9 @@ export default function Home() {
                       <Image
                         alt="Product image"
                         className="aspect-square rounded-md object-cover"
-                        height="64"
-                        src="/placeholder.svg"
-                        width="64"
+                        height="96"
+                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1399&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        width="96"
                       />
                     </TableCell>
                     <TableCell className="font-medium hidden sm:table-cell">
@@ -121,9 +121,9 @@ export default function Home() {
                       <Image
                         alt="Product image"
                         className="aspect-square rounded-md object-cover"
-                        height="64"
-                        src="/placeholder.svg"
-                        width="64"
+                        height="96"
+                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1399&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        width="96"
                       />
                     </TableCell>
                     <TableCell className="font-medium hidden sm:table-cell">
@@ -140,9 +140,9 @@ export default function Home() {
                       <Image
                         alt="Product image"
                         className="aspect-square rounded-md object-cover"
-                        height="64"
-                        src="/placeholder.svg"
-                        width="64"
+                        height="96"
+                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1399&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        width="96"
                       />
                     </TableCell>
                     <TableCell className="font-medium hidden sm:table-cell">
@@ -150,7 +150,7 @@ export default function Home() {
                     </TableCell>
                     <TableCell className="font-medium">샌들</TableCell>
                     <TableCell>
-                      <Badge variant="ali">AliExpress</Badge>
+                      <Badge variant="ali">Ali</Badge>
                     </TableCell>
                     <TableCell className="hidden sm:table-cell">-</TableCell>
                   </TableRow>
@@ -159,9 +159,9 @@ export default function Home() {
                       <Image
                         alt="Product image"
                         className="aspect-square rounded-md object-cover"
-                        height="64"
-                        src="/placeholder.svg"
-                        width="64"
+                        height="96"
+                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1399&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        width="96"
                       />
                     </TableCell>
                     <TableCell className="font-medium hidden sm:table-cell">
@@ -169,7 +169,7 @@ export default function Home() {
                     </TableCell>
                     <TableCell className="font-medium">샌들</TableCell>
                     <TableCell>
-                      <Badge variant="ali">AliExpress</Badge>
+                      <Badge variant="ali">Ali</Badge>
                     </TableCell>
                     <TableCell className="hidden sm:table-cell">-</TableCell>
                   </TableRow>
@@ -178,9 +178,9 @@ export default function Home() {
                       <Image
                         alt="Product image"
                         className="aspect-square rounded-md object-cover"
-                        height="64"
-                        src="/placeholder.svg"
-                        width="64"
+                        height="96"
+                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1399&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        width="96"
                       />
                     </TableCell>
                     <TableCell className="font-medium hidden sm:table-cell">
@@ -202,12 +202,12 @@ export default function Home() {
                     <PaginationPrevious href="#" />
                   </PaginationItem>
                   <PaginationItem>
-                    <PaginationLink href="#">1</PaginationLink>
+                    <PaginationLink href="#" isActive>
+                      1
+                    </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
-                    <PaginationLink href="#" isActive>
-                      2
-                    </PaginationLink>
+                    <PaginationLink href="#">2</PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationLink href="#">3</PaginationLink>
