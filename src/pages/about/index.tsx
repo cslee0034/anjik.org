@@ -11,21 +11,21 @@ export default function About() {
           <div className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
             <p className="text-lg leading-8 text-gray-600">
               해외 쇼핑이 점점 더 보편화되고 있지만, 그 속에는 소비자가 알지
-              못하는 유해 물품이 포함될 수 있는 위험도 존재합니다.
+              못하는 유해 물품이 포함될 수 있는 위험이 존재합니다.
             </p>
             <p className="text-lg leading-8 text-gray-600 mt-4">
-              안직(안심 직구)은 해외 직구 시 유해하거나 안전하지 않은 제품을
-              쉽게 식별할 수 있도록 하여, 누구나 안심하고 해외 쇼핑을 즐길 수
-              있는 환경을 만드는 것을 목표로 합니다.
+              안직(안심 직구)의 미션은 해외 직구 시 유해하거나 안전하지 않은
+              제품을 쉽게 식별할 수 있도록 하여 누구나 안심하고 해외 쇼핑을 즐길
+              수 있는 환경을 만드는 것입니다.
             </p>
             <p className="text-lg leading-8 text-gray-600 mt-4">
               저희의 서비스는 비영리를 목적으로 하며 모든 정보는 한국소비자원과
-              서울시전자상거래센터에서 제공하는 정보를 기반으로 합니다.
+              서울시전자상거래센터에서 제공하는 공식 발표를 기반으로 합니다.
             </p>
           </div>
           <Image
             alt=""
-            src="https://images.unsplash.com/photo-1567532900872-f4e906cbf06a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1280&q=80"
+            src="https://plus.unsplash.com/premium_photo-1683121271931-669e09a55414?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             className="mt-10 aspect-[6/5] w-full max-w-lg rounded-2xl object-cover sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-36"
             width={1280}
             height={1024}
