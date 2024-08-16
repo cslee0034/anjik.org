@@ -67,10 +67,18 @@ export default function Sidebar({ isLoggedIn }: { isLoggedIn: boolean }) {
             </SheetClose>
             <SheetClose asChild>
               <Link
-                href="/"
+                href="/about"
                 className="text-muted-foreground hover:text-foreground"
               >
                 About
+              </Link>
+            </SheetClose>
+            <SheetClose asChild>
+              <Link
+                href="/feedback"
+                className="text-muted-foreground hover:text-foreground"
+              >
+                Feedback
               </Link>
             </SheetClose>
             <div />

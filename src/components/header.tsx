@@ -26,16 +26,16 @@ export default function Header() {
         </Link>
         <div className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6 px-4">
           <Link
-            href="#"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Home
-          </Link>
-          <Link
-            href="#"
+            href="about"
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
             About
+          </Link>
+          <Link
+            href="feedback"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Feedback
           </Link>
         </div>
       </nav>
