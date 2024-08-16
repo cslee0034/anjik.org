@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function Feedback() {
   const { data: session } = useSession();

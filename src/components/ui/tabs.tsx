@@ -1,7 +1,13 @@
 import * as React from "react";
 import * as TabsPrimitive from "@radix-ui/react-tabs";
+<<<<<<< HEAD
 import { cn } from "@/lib/utils";
 
+=======
+
+import { cn } from "@/libs/utils";
+
+>>>>>>> feature/login
 const Tabs = TabsPrimitive.Root;
 
 const TabsList = React.forwardRef<

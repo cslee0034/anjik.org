@@ -1,10 +1,7 @@
 import Link from "next/link";
 import Sidebar from "./sidebar";
-import { useUserStore } from "../stores/useUserStore";
 
 export default function Header() {
-  const { isLoggedIn } = useUserStore();
-
   return (
     <header className="top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
       <nav className="flex">
@@ -41,7 +38,7 @@ export default function Header() {
       </nav>
       <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">
         <div className="ml-auto flex-1 sm:flex-initial" />
-        <Sidebar isLoggedIn={isLoggedIn} />
+        <Sidebar />
       </div>
     </header>
   );

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { CircleUser, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import {
   Sheet,
   SheetClose,
@@ -10,24 +10,39 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
-export default function Sidebar({ isLoggedIn }: { isLoggedIn: boolean }) {
+export default function Sidebar() {
   const { data: session } = useSession();
+
   return (
     <div>
-      {isLoggedIn ? (
+      {session ? (
         <div className="hidden md:flex align-middle">
           <Button asChild variant="outline" className="mx-1">
             <Link href="/profile">내 정보</Link>
           </Button>
-          <Button asChild variant="outline" className="mx-1">
+          <Button
+            asChild
+            variant="outline"
+            className="mx-1"
+            onClick={() => {
+              signOut;
+            }}
+          >
             <Link href="/api/auth/signout">로그아웃</Link>
           </Button>
         </div>
       ) : (
         <div className="hidden md:flex">
-          <Button asChild variant="secondary" className="mx-1">
+          <Button
+            asChild
+            variant="secondary"
+            className="mx-1"
+            onClick={() => {
+              signIn;
+            }}
+          >
             <Link href="/api/auth/signin">로그인</Link>
           </Button>
         </div>
@@ -78,23 +93,35 @@ export default function Sidebar({ isLoggedIn }: { isLoggedIn: boolean }) {
                 Feedback
               </Link>
             </SheetClose>
-
+            <div />
             {session ? (
               <>
                 <SheetClose asChild>
-                  <Button asChild className="bg-black">
-                    <Link href="/my-account">My Account</Link>
+                  <Button asChild variant="outline">
+                    <Link href="/profile">내 정보</Link>
                   </Button>
                 </SheetClose>
-
-                <Button asChild variant="outline">
+                <Button
+                  asChild
+                  variant="outline"
+                  onClick={() => {
+                    signOut;
+                  }}
+                >
                   <Link href="/api/auth/signout">로그아웃</Link>
                 </Button>
               </>
             ) : (
               <>
                 <SheetClose asChild>
-                  <Button asChild variant="outline" className="mx-1">
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="mx-1"
+                    onClick={() => {
+                      signIn;
+                    }}
+                  >
                     <Link href="/api/auth/signin">로그인</Link>
                   </Button>
                 </SheetClose>
