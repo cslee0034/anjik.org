@@ -4,50 +4,35 @@ import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { useUserStore } from "../stores/useUserStore";
+import { useSession } from "next-auth/react";
 
 export default function Sidebar({ isLoggedIn }: { isLoggedIn: boolean }) {
-  const userIfo = useUserStore((state) => state.userInfo);
-
+  const { data: session } = useSession();
   return (
     <div>
       {isLoggedIn ? (
         <div className="hidden md:flex align-middle">
-          <p className="flex items-center justify-center mx-2">
-            {userIfo?.firstName}
-          </p>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="secondary" size="icon" className="rounded-full">
-                <CircleUser className="h-5 w-5" />
-                <span className="sr-only">Toggle user menu</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>Logout</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Button asChild variant="outline" className="mx-1">
+            <Link href="/profile">내 정보</Link>
+          </Button>
+          <Button asChild variant="outline" className="mx-1">
+            <Link href="/api/auth/signout">로그아웃</Link>
+          </Button>
         </div>
       ) : (
         <div className="hidden md:flex">
           <Button asChild variant="secondary" className="mx-1">
-            <Link href="/login">Login</Link>
+            <Link href="/api/auth/signin">로그인</Link>
           </Button>
         </div>
       )}
+
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" className="shrink-0 md:hidden">
@@ -55,7 +40,17 @@ export default function Sidebar({ isLoggedIn }: { isLoggedIn: boolean }) {
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left">
+
+        <SheetContent side="left" aria-describedby="sheet-description">
+          <SheetHeader>
+            <SheetTitle />
+            <SheetDescription />
+          </SheetHeader>
+
+          <div id="sheet-description" className="sr-only">
+            sidebar navigation content.
+          </div>
+
           <nav className="grid gap-6 text-lg font-medium">
             <SheetClose asChild>
               <Link
@@ -65,6 +60,7 @@ export default function Sidebar({ isLoggedIn }: { isLoggedIn: boolean }) {
                 Home
               </Link>
             </SheetClose>
+
             <SheetClose asChild>
               <Link
                 href="/about"
@@ -73,6 +69,7 @@ export default function Sidebar({ isLoggedIn }: { isLoggedIn: boolean }) {
                 About
               </Link>
             </SheetClose>
+
             <SheetClose asChild>
               <Link
                 href="/feedback"
@@ -81,23 +78,24 @@ export default function Sidebar({ isLoggedIn }: { isLoggedIn: boolean }) {
                 Feedback
               </Link>
             </SheetClose>
-            <div />
-            {isLoggedIn ? (
+
+            {session ? (
               <>
                 <SheetClose asChild>
                   <Button asChild className="bg-black">
                     <Link href="/my-account">My Account</Link>
                   </Button>
                 </SheetClose>
+
                 <Button asChild variant="outline">
-                  <Link href="/logout">Logout</Link>
+                  <Link href="/api/auth/signout">로그아웃</Link>
                 </Button>
               </>
             ) : (
               <>
                 <SheetClose asChild>
                   <Button asChild variant="outline" className="mx-1">
-                    <Link href="/login">Login</Link>
+                    <Link href="/api/auth/signin">로그인</Link>
                   </Button>
                 </SheetClose>
               </>
