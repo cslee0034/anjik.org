@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Skeleton } from "@/components/ui/skeleton";
 import Subscription from "../../components/subscription";
 
-export default function ProductPage() {
+export default function Product() {
   const router = useRouter();
   const { id } = router.query;
 
