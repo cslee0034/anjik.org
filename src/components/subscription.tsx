@@ -46,7 +46,7 @@ export default function Subscription({ className, ...props }: CardProps) {
   };
 
   return (
-    <Card className={cn("w-[380px]", className)} {...props}>
+    <Card className={cn("w-[350px]", className)} {...props}>
       <CardHeader>
         <CardTitle>안심직구 이메일 구독하기</CardTitle>
       </CardHeader>

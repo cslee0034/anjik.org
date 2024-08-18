@@ -1,4 +1,3 @@
-// pages/api/subscribe.ts
 import { NextApiRequest, NextApiResponse } from "next";
 import mongoConnect from "../../../lib/mongodb";
 import User from "../../../models/User";

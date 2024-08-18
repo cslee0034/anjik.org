@@ -108,7 +108,7 @@ export default function Home() {
                       <span className="sr-only">Image</span>
                     </TableHead>
                     <TableHead className="hidden sm:table-cell">품목</TableHead>
-                    <TableHead>제품</TableHead>
+                    <TableHead className="min-w-20">제품</TableHead>
                     <TableHead>플랫폼</TableHead>
                     <TableHead className="hidden sm:table-cell">
                       검사 결과

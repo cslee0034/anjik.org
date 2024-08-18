@@ -14,13 +14,16 @@ import { useSession } from "next-auth/react";
 
 export default function Sidebar() {
   const { data: session } = useSession();
+  const email = session?.user?.email;
+  const provider = session?.user?.provider;
+  const profilePath = email && provider ? `/profile/${provider}/${email}` : "/";
 
   return (
     <div>
       {session ? (
         <div className="hidden md:flex align-middle">
           <Button asChild variant="outline" className="mx-1">
-            <Link href="/profile">내 정보</Link>
+            <Link href={profilePath}>내 정보</Link>
           </Button>
           <Button asChild variant="outline" className="mx-1">
             <Link href="/api/auth/signout">로그아웃</Link>
@@ -84,7 +87,7 @@ export default function Sidebar() {
               <>
                 <SheetClose asChild>
                   <Button asChild variant="outline">
-                    <Link href="/profile">내 정보</Link>
+                    <Link href={profilePath}>내 정보</Link>
                   </Button>
                 </SheetClose>
                 <Button asChild variant="outline">
