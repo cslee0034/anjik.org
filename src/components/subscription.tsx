@@ -1,15 +1,17 @@
-import { BellRing, Check } from "lucide-react";
-
+import { BellRing } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useSession } from "next-auth/react";
+import { useSubscribe } from "@/hooks/useSubscribe";
+import { useState } from "react";
+import Link from "next/link";
 
 const notifications = [
   {
@@ -25,10 +27,28 @@ const notifications = [
 type CardProps = React.ComponentProps<typeof Card>;
 
 export default function Subscription({ className, ...props }: CardProps) {
+  const { data: session } = useSession();
+  const [isSubscribing, setIsSubscribing] = useState(false);
+  const subscribeMutation = useSubscribe();
+
+  const handleSubscribe = () => {
+    if (!session) return;
+
+    setIsSubscribing(true);
+
+    subscribeMutation.mutate({
+      email: session.user.email,
+      provider: session.user.provider,
+      shouldReceiveEmails: true,
+    });
+
+    setIsSubscribing(false);
+  };
+
   return (
     <Card className={cn("w-[380px]", className)} {...props}>
       <CardHeader>
-        <CardTitle>안심직구 메일 구독하기</CardTitle>
+        <CardTitle>안심직구 이메일 구독하기</CardTitle>
       </CardHeader>
       <CardContent className="grid gap-4">
         <div>
@@ -51,9 +71,31 @@ export default function Subscription({ className, ...props }: CardProps) {
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full">
-          <Check className="mr-2 h-4 w-4" /> 구독하기
-        </Button>
+        {/* 구독 상태에 따라 버튼 표시 */}
+        {!session ? (
+          <Link href="/api/auth/signin" className="w-full">
+            <Button
+              className="w-full"
+              disabled={isSubscribing || subscribeMutation.status === "pending"}
+            >
+              <div className="flex items-center justify-center gap-2">
+                <BellRing className="h-4 w-4" /> 로그인이 필요합니다
+              </div>
+            </Button>
+          </Link>
+        ) : session?.user.shouldReceiveEmails ? (
+          <Button variant="outline" className="w-full" disabled>
+            <BellRing className="mr-2 h-4 w-4" /> 구독중
+          </Button>
+        ) : (
+          <Button
+            className="w-full"
+            onClick={handleSubscribe}
+            disabled={isSubscribing || subscribeMutation.status === "pending"}
+          >
+            <BellRing className="mr-2 h-4 w-4" /> 구독하기
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

@@ -10,7 +10,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 export default function Sidebar() {
   const { data: session } = useSession();
@@ -22,27 +22,13 @@ export default function Sidebar() {
           <Button asChild variant="outline" className="mx-1">
             <Link href="/profile">내 정보</Link>
           </Button>
-          <Button
-            asChild
-            variant="outline"
-            className="mx-1"
-            onClick={() => {
-              signOut;
-            }}
-          >
+          <Button asChild variant="outline" className="mx-1">
             <Link href="/api/auth/signout">로그아웃</Link>
           </Button>
         </div>
       ) : (
         <div className="hidden md:flex">
-          <Button
-            asChild
-            variant="secondary"
-            className="mx-1"
-            onClick={() => {
-              signIn;
-            }}
-          >
+          <Button asChild variant="secondary" className="mx-1">
             <Link href="/api/auth/signin">로그인</Link>
           </Button>
         </div>
@@ -101,27 +87,14 @@ export default function Sidebar() {
                     <Link href="/profile">내 정보</Link>
                   </Button>
                 </SheetClose>
-                <Button
-                  asChild
-                  variant="outline"
-                  onClick={() => {
-                    signOut;
-                  }}
-                >
+                <Button asChild variant="outline">
                   <Link href="/api/auth/signout">로그아웃</Link>
                 </Button>
               </>
             ) : (
               <>
                 <SheetClose asChild>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="mx-1"
-                    onClick={() => {
-                      signIn;
-                    }}
-                  >
+                  <Button asChild variant="outline" className="mx-1">
                     <Link href="/api/auth/signin">로그인</Link>
                   </Button>
                 </SheetClose>

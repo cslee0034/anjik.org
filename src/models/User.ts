@@ -1,6 +1,16 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Document } from "mongoose";
+import { UserRole } from "../types/userRole";
 
-const userSchema = new Schema(
+interface IUser extends Document {
+  email: string;
+  provider: string;
+  role: UserRole;
+  receivingEmail?: string;
+  shouldReceiveEmails: boolean;
+  lastActiveAt?: Date;
+}
+
+const userSchema = new Schema<IUser>(
   {
     email: {
       type: String,
@@ -13,8 +23,8 @@ const userSchema = new Schema(
     },
     role: {
       type: String,
-      enum: ["admin", "user"],
-      default: "user",
+      enum: ["ADMIN", "USER"],
+      default: "USER",
     },
     receivingEmail: {
       type: String,
@@ -36,6 +46,6 @@ const userSchema = new Schema(
 userSchema.index({ email: 1 });
 userSchema.index({ shouldReceiveEmails: 1 });
 
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+const User = mongoose.models.User || mongoose.model<IUser>("User", userSchema);
 
 export default User;
