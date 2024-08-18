@@ -57,7 +57,7 @@ export const useSearch = () => {
     query,
     handleSearch,
     isLoading,
-    results: data?.products || [],
+    products: data?.products || [],
     currentPage,
     changePage,
     platformFilter,

@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 export default function Feedback() {
   const { data: session } = useSession();
   return (
-    <div className="flex flex-col items-center justify-center lg:py-8 md:py-6 sm:py-4">
+    <div className="flex flex-col items-center justify-center py-20">
       <div className="w-full max-w-lg">
         {session ? (
           <form className="grid w-full items-start gap-6">

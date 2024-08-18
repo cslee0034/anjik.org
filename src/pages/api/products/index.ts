@@ -22,7 +22,7 @@ export default async function handler(
     const searchStage = query
       ? {
           $search: {
-            index: "products_search_index",
+            index: "product_search_index",
             compound: {
               should: [
                 {

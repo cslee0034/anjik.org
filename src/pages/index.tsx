@@ -32,13 +32,14 @@ import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSearch } from "@/hooks/useSearch";
 import PLATFORM from "@/const/platform";
+import router from "next/router";
 
 export default function Home() {
   const {
     query,
     handleSearch,
     isLoading,
-    results,
+    products,
     currentPage,
     changePage,
     platformFilter,
@@ -63,7 +64,7 @@ export default function Home() {
         <div className="flex flex-col gap-2 items-start sm:flex-row py-1 px-1">
           <TabsList>
             <TabsTrigger value={PLATFORM.ALL}>All</TabsTrigger>
-            <TabsTrigger value={PLATFORM.ALI}>알리</TabsTrigger>
+            <TabsTrigger value={PLATFORM.ALIEXPRSS}>알리</TabsTrigger>
             <TabsTrigger value={PLATFORM.TEMU}>테무</TabsTrigger>
             <TabsTrigger value={PLATFORM.SHEIN}>쉬인</TabsTrigger>
           </TabsList>
@@ -92,7 +93,7 @@ export default function Home() {
 
         {/* 검색 결과 */}
         <TabsContent value={platformFilter}>
-          <Card x-chunk="dashboard-06-chunk-0">
+          <Card>
             <CardHeader>
               <CardTitle>제품 목록</CardTitle>
               <CardDescription>
@@ -135,30 +136,33 @@ export default function Home() {
                           </TableCell>
                         </TableRow>
                       ))
-                    : results.map((result: any) => (
-                        <TableRow key={result._id}>
+                    : products.map((product: any) => (
+                        <TableRow
+                          key={product._id}
+                          onClick={() => router.push(`/product/${product._id}`)}
+                        >
                           <TableCell>
                             <Image
                               alt="Product image"
                               className="aspect-square rounded-md object-cover"
                               height="96"
-                              src={result.picture}
+                              src={product.picture}
                               width="96"
                             />
                           </TableCell>
                           <TableCell className="font-medium hidden sm:table-cell">
-                            {result.category}
+                            {product.category}
                           </TableCell>
                           <TableCell className="font-medium">
-                            {result.productName}
+                            {product.productName}
                           </TableCell>
                           <TableCell>
-                            <Badge variant={result.platform}>
-                              {result.platform}
+                            <Badge variant={product.platform}>
+                              {product.platform}
                             </Badge>
                           </TableCell>
                           <TableCell className="hidden sm:table-cell">
-                            {result.testShort}
+                            {product.testShort}
                           </TableCell>
                         </TableRow>
                       ))}
@@ -182,20 +186,16 @@ export default function Home() {
                       let pageNumber = currentPage;
 
                       if (currentPage === 1) {
-                        // 첫 페이지일 때 [1, 2, 3]
                         pageNumber = index + 1;
                       } else if (currentPage === 2) {
-                        // 두 번째 페이지일 때 [1, 2, 3]
                         pageNumber = index + 1;
                       } else {
-                        // 그 외는 [currentPage - 1, currentPage, currentPage + 1]
                         pageNumber = currentPage - 1 + index;
                       }
 
                       return (
                         <PaginationItem key={pageNumber}>
                           <PaginationLink
-                            href="#"
                             isActive={pageNumber === currentPage}
                             onClick={() => changePage(pageNumber)}
                           >
