@@ -28,12 +28,6 @@ export default function Header() {
           >
             About
           </Link>
-          <Link
-            href="/feedback"
-            className="text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Feedback
-          </Link>
         </div>
       </nav>
       <div className="flex w-full items-center gap-4 md:ml-auto md:gap-2 lg:gap-4">

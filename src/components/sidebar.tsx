@@ -73,15 +73,6 @@ export default function Sidebar() {
                 About
               </Link>
             </SheetClose>
-
-            <SheetClose asChild>
-              <Link
-                href="/feedback"
-                className="text-muted-foreground hover:text-foreground"
-              >
-                Feedback
-              </Link>
-            </SheetClose>
             <div />
             {session ? (
               <>

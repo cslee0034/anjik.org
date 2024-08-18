@@ -15,7 +15,7 @@ import Link from "next/link";
 
 const notifications = [
   {
-    title: "새로운 유해품목을 가장 먼저 알려드립니다.",
+    title: "새로운 유해제품을 가장 먼저 알려드립니다.",
     description: "가입한 이메일로 알림을 받으세요.",
   },
   {
@@ -79,7 +79,7 @@ export default function Subscription({ className, ...props }: CardProps) {
               disabled={isSubscribing || subscribeMutation.status === "pending"}
             >
               <div className="flex items-center justify-center gap-2">
-                <BellRing className="h-4 w-4" /> 로그인이 필요합니다
+                <BellRing className="h-4 w-4" /> 구독하기
               </div>
             </Button>
           </Link>
