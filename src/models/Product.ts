@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import ProductDetail from "./ProductDetail";
 
 const productSchema = new Schema({
   picture: {
@@ -23,7 +24,7 @@ const productSchema = new Schema({
   },
   productDetail: {
     type: Schema.Types.ObjectId,
-    ref: "ProductDetail",
+    ref: ProductDetail,
     required: true,
   },
 });
