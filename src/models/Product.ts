@@ -21,17 +21,10 @@ const productSchema = new Schema({
     type: String,
     required: true,
   },
-  testLong: {
-    type: String,
+  productDetail: {
+    type: Schema.Types.ObjectId,
+    ref: "ProductDetail",
     required: true,
-  },
-  reference: {
-    type: String,
-    required: true,
-  },
-  etc: {
-    type: String,
-    required: false,
   },
 });
 

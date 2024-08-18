@@ -1,6 +1,6 @@
 const PLATFORM = {
   ALL: "All",
-  ALI: "Ali",
+  ALIEXPRSS: "AliExpress",
   TEMU: "Temu",
   SHEIN: "Shein",
 } as const;

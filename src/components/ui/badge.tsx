@@ -15,7 +15,7 @@ const badgeVariants = cva(
         destructive:
           "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
         outline: "text-foreground",
-        Ali: "bg-red-100",
+        AliExpress: "bg-red-100",
         Temu: "bg-orange-100",
         Shein: "bg-gray-200",
       },
