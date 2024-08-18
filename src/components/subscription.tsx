@@ -19,8 +19,8 @@ const notifications = [
     description: "가입한 이메일로 알림을 받으세요.",
   },
   {
-    title: "무료로 구독하세요.",
-    description: "어떠한 비용도 청구되지 않습니다.",
+    title: "어떠한 비용도 청구되지 않습니다.",
+    description: "안심하고 구독하세요.",
   },
 ];
 
