@@ -1,6 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
 import { signOut } from "next-auth/react";
-import router from "next/router";
 
 const deleteUserRequest = async () => {
   const response = await fetch("/api/user/delete", {
