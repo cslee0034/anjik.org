@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { PipelineStage } from "mongoose";
 import Product from "../../../models/Product";
 import PLATFORM from "../../../const/platform";
 import mongoConnect from "../../../lib/mongodb";
@@ -69,10 +70,15 @@ export default async function handler(
     }
 
     // 페이지네이션을 위한 파이프라인 구성
-    const pipeline = [];
+    const pipeline: PipelineStage[] = [];
     if (searchStage) pipeline.push(searchStage);
     if (Object.keys(matchStage).length > 0)
       pipeline.push({ $match: matchStage });
+
+    // 역순 정렬을 위한 $sort 추가
+    pipeline.push({ $sort: { _id: -1 } });
+
+    // 페이지네이션 처리
     pipeline.push(
       { $skip: (pageNumber - 1) * itemsPerPage },
       { $limit: itemsPerPage }

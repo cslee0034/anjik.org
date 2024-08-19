@@ -10,7 +10,7 @@ const updateEmailPreference = async ({
   provider: string;
   shouldReceiveEmails: boolean;
 }) => {
-  const response = await fetch("/api/subscribe", {
+  const response = await fetch("/api/subscribe/update", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
