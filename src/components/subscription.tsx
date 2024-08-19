@@ -12,6 +12,8 @@ import { useSession } from "next-auth/react";
 import { useSubscribe } from "@/hooks/useSubscribe";
 import { useState } from "react";
 import Link from "next/link";
+import CustomDialog from "./custom-dialog";
+import { useUnsubscribe } from "../hooks/useUnsubscribe";
 
 const notifications = [
   {
@@ -28,21 +30,27 @@ type CardProps = React.ComponentProps<typeof Card>;
 
 export default function Subscription({ className, ...props }: CardProps) {
   const { data: session } = useSession();
-  const [isSubscribing, setIsSubscribing] = useState(false);
   const subscribeMutation = useSubscribe();
+  const unsubscribeMutation = useUnsubscribe();
 
   const handleSubscribe = () => {
     if (!session) return;
-
-    setIsSubscribing(true);
 
     subscribeMutation.mutate({
       email: session.user.email,
       provider: session.user.provider,
       shouldReceiveEmails: true,
     });
+  };
 
-    setIsSubscribing(false);
+  const handleUnsubscribe = () => {
+    if (!session) return;
+
+    unsubscribeMutation.mutate({
+      email: session.user.email,
+      provider: session.user.provider,
+      shouldReceiveEmails: false,
+    });
   };
 
   return (
@@ -76,7 +84,7 @@ export default function Subscription({ className, ...props }: CardProps) {
           <Link href="/api/auth/signin" className="w-full">
             <Button
               className="w-full"
-              disabled={isSubscribing || subscribeMutation.status === "pending"}
+              disabled={subscribeMutation.status === "pending"}
             >
               <div className="flex items-center justify-center gap-2">
                 <BellRing className="h-4 w-4" /> 구독하기
@@ -84,14 +92,21 @@ export default function Subscription({ className, ...props }: CardProps) {
             </Button>
           </Link>
         ) : session?.user.shouldReceiveEmails ? (
-          <Button variant="outline" className="w-full" disabled>
-            <BellRing className="mr-2 h-4 w-4" /> 구독중
-          </Button>
+          <div className="w-full grid">
+            <CustomDialog
+              trigger="구독 취소"
+              title="정말로 구독을 취소하시겠습니까?"
+              description="구독을 취소하면 더 이상 이메일을 받지 못하게 됩니다."
+              action={handleUnsubscribe}
+              cancel="취소"
+              accept="구독 취소"
+            />
+          </div>
         ) : (
           <Button
             className="w-full"
             onClick={handleSubscribe}
-            disabled={isSubscribing || subscribeMutation.status === "pending"}
+            disabled={subscribeMutation.status === "pending"}
           >
             <BellRing className="mr-2 h-4 w-4" /> 구독하기
           </Button>

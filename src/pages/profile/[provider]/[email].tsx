@@ -1,7 +1,6 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -11,24 +10,14 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
 import { useDeleteUser } from "../../../hooks/useDeleteUser";
+import CustomDialog from "../../../components/custom-dialog";
 
 export default function Profile() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const { provider, email } = router.query;
-  const { mutate: deleteUser, isPending } = useDeleteUser();
+  const { mutate: deleteUser } = useDeleteUser();
 
   useEffect(() => {
     // 세션이 없거나 아직 로딩 중일 때
@@ -85,32 +74,14 @@ export default function Profile() {
                 disabled
               />
             </div>
-            <AlertDialog>
-              <AlertDialogTrigger asChild>
-                <Button variant="outline">회원 탈퇴</Button>
-              </AlertDialogTrigger>
-              <AlertDialogContent>
-                <AlertDialogHeader>
-                  <AlertDialogTitle>
-                    정말로 회원 탈퇴를 하시겠습니까?
-                  </AlertDialogTitle>
-                  <AlertDialogDescription>
-                    회원탈퇴를 하면 계정과 데이터가 영구적으로 삭제됩니다.
-                    <br />
-                    또한 더이상 안내 이메일을 받을 수 없습니다.
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel>취소</AlertDialogCancel>
-                  <AlertDialogAction
-                    onClick={() => deleteUser()}
-                    disabled={isPending}
-                  >
-                    회원 탈퇴
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
+            <CustomDialog
+              trigger="회원 탈퇴"
+              title="정말로 회원 탈퇴를 하시겠습니까?"
+              description="회원탈퇴를 하면 계정과 데이터가 영구적으로 삭제됩니다. 또한 더이상 안내 이메일을 받을 수 없습니다."
+              action={deleteUser}
+              cancel="취소"
+              accept="회원 탈퇴"
+            />
           </div>
         </CardContent>
       </Card>

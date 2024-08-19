@@ -6,7 +6,7 @@ export default function Footer() {
           {/* Email Section */}
           <div className="flex flex-col items-center md:items-start">
             <a href="mailto:anjik@gmail.com" className="text-sm text-gray-500">
-              Email: anjik@gmail.com
+              Email: anjik1218@gmail.com
             </a>
           </div>
 
