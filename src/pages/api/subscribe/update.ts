@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import mongoConnect from "../../../lib/mongodb";
 import User from "../../../models/User";
+import { sendSlackMessage } from "../../../lib/slack-webhook";
 
 export default async function handler(
   req: NextApiRequest,
@@ -17,7 +18,7 @@ export default async function handler(
       .status(200)
       .json({ message: "Email preference updated", shouldReceiveEmails });
   } catch (error) {
-    console.error("Error updating email preference:", error);
+    await sendSlackMessage(String(error));
     return res.status(500).json({ message: "Error updating email preference" });
   }
 }

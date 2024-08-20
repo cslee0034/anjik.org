@@ -3,6 +3,7 @@ import { PipelineStage } from "mongoose";
 import Product from "../../../models/Product";
 import PLATFORM from "../../../const/platform";
 import mongoConnect from "../../../lib/mongodb";
+import { sendSlackMessage } from "../../../lib/slack-webhook";
 
 export default async function handler(
   req: NextApiRequest,
@@ -95,7 +96,7 @@ export default async function handler(
       totalCount,
     });
   } catch (error) {
-    console.error("Error fetching products:", error);
+    await sendSlackMessage(String(error));
     return res.status(500).json({ message: "Internal Server Error" });
   }
 }

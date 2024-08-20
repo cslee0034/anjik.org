@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import mongoConnect from "../../../lib/mongodb";
 import User from "../../../models/User";
 import { getSession } from "next-auth/react";
+import { sendSlackMessage } from "../../../lib/slack-webhook";
 
 export default async function handler(
   req: NextApiRequest,
@@ -31,7 +32,7 @@ export default async function handler(
 
     return res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
-    console.error(error);
+    await sendSlackMessage(String(error));
     return res.status(500).json({ message: "Internal server error" });
   }
 }

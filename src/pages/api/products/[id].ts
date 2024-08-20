@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import mongoConnect from "../../../lib/mongodb";
 import Product from "../../../models/Product";
+import { sendSlackMessage } from "../../../lib/slack-webhook";
 
 export default async function handler(
   req: NextApiRequest,
@@ -23,7 +24,7 @@ export default async function handler(
 
     return res.status(200).json(product);
   } catch (error) {
-    console.error("Error fetching product:", error);
+    await sendSlackMessage(String(error));
     return res.status(500).json({ message: "Internal Server Error" });
   }
 }

@@ -2,6 +2,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import mongoConnect from "../../../lib/mongodb";
 import ProductDetail from "../../../models/ProductDetail";
 import Product from "../../../models/Product";
+import { sendSlackMessage } from "../../../lib/slack-webhook";
 
 export default async function handler(
   req: NextApiRequest,
@@ -37,7 +38,7 @@ export default async function handler(
 
       res.status(201).json({ success: true, data: product });
     } catch (error) {
-      console.error(error);
+      await sendSlackMessage(String(error));
       res.status(400).json({ success: false });
     }
   } else {
