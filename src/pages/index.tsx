@@ -47,6 +47,11 @@ export default function Home() {
     totalPages,
   } = useSearch();
 
+  const handlePlatformChange = (newPlatform: string) => {
+    setPlatformFilter(newPlatform);
+    changePage(1);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       handleSearch();
@@ -58,7 +63,7 @@ export default function Home() {
       {/* 플랫폼 필터 변경 */}
       <Tabs
         value={platformFilter}
-        onValueChange={setPlatformFilter}
+        onValueChange={handlePlatformChange}
         className="overflow-hidden"
       >
         <div className="flex flex-col gap-2 items-start sm:flex-row py-1 px-1">
