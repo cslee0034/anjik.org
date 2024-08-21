@@ -33,6 +33,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useSearch } from "@/hooks/useSearch";
 import PLATFORM from "@/const/platform";
 import router from "next/router";
+import Head from "next/head";
 
 export default function Home() {
   const {
@@ -60,6 +61,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>안전한 직구 안직 - 홈</title>
+      </Head>
       {/* 플랫폼 필터 변경 */}
       <Tabs
         value={platformFilter}

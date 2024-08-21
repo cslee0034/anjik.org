@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useDeleteUser } from "../../../hooks/useDeleteUser";
 import CustomDialog from "../../../components/custom-dialog";
+import Head from "next/head";
 
 export default function Profile() {
   const { data: session, status } = useSession();
@@ -48,43 +49,48 @@ export default function Profile() {
   }
 
   return (
-    <div className="py-10">
-      <Card className="mx-auto max-w-sm">
-        <CardHeader>
-          <CardTitle className="text-2xl">내 정보</CardTitle>
-          <CardDescription className="min-w-72"></CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="email">Provider</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder={provider as string}
-                disabled
+    <>
+      <Head>
+        <title>안전한 직구 안직 - 내 정보</title>
+      </Head>
+      <div className="py-10">
+        <Card className="mx-auto max-w-sm">
+          <CardHeader>
+            <CardTitle className="text-2xl">내 정보</CardTitle>
+            <CardDescription className="min-w-72"></CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="email">Provider</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder={provider as string}
+                  disabled
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder={email as string}
+                  disabled
+                />
+              </div>
+              <CustomDialog
+                trigger="회원 탈퇴"
+                title="정말로 회원 탈퇴를 하시겠습니까?"
+                description="회원탈퇴를 하면 계정과 데이터가 영구적으로 삭제됩니다. 또한 더이상 안내 이메일을 받을 수 없습니다."
+                action={deleteUser}
+                cancel="취소"
+                accept="회원 탈퇴"
               />
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder={email as string}
-                disabled
-              />
-            </div>
-            <CustomDialog
-              trigger="회원 탈퇴"
-              title="정말로 회원 탈퇴를 하시겠습니까?"
-              description="회원탈퇴를 하면 계정과 데이터가 영구적으로 삭제됩니다. 또한 더이상 안내 이메일을 받을 수 없습니다."
-              action={deleteUser}
-              cancel="취소"
-              accept="회원 탈퇴"
-            />
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+          </CardContent>
+        </Card>
+      </div>
+    </>
   );
 }

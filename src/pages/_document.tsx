@@ -10,7 +10,6 @@ export default function Document() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         {/* SEO 관련 메타 태그 */}
-        <title>안전한 직구 안직</title>
         <meta
           name="description"
           content="알리익스프레스, 테무, 쉬인 등의 직구 제품에서 발견된 유해물질 정보를 통해 안전한 쇼핑을 위한 가이드를 제공합니다."

@@ -6,6 +6,7 @@ import Main from "../components/main";
 import { SessionProvider } from "next-auth/react";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "../lib/react-query";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Footer />
         </SessionProvider>
       </QueryClientProvider>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_TAG as string} />
     </>
   );
 }
