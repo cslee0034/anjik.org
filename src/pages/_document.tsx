@@ -51,6 +51,12 @@ export default function Document() {
         {/* Robots.txt 설정을 통해 검색 엔진 크롤링 제어 */}
         <meta name="robots" content="index, follow" />
 
+        {/* 네이버 웹마스터 도구 등록 */}
+        <meta
+          name="naver-site-verification"
+          content="3c22b6689fc7b3669234c460c8943a71ae09f441"
+        />
+
         {/* Google Search Console 등록 */}
         <meta
           name="google-site-verification"
