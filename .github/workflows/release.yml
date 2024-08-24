@@ -49,11 +49,6 @@ jobs:
           BRANCH_NAME=${GITHUB_REF#refs/heads/release/}
           echo "IMAGE_TAG=${BRANCH_NAME}" >> $GITHUB_ENV
 
-      - name: Replace ECR ID and IMAGE_TAG in Dockerrun.aws.json
-        run: |
-          sed -i "s#<ECR_ID>#${{ secrets.ECR_ID }}#g" Dockerrun.aws.json
-          sed -i "s#<IMAGE_TAG>#${{ env.IMAGE_TAG }}#g" Dockerrun.aws.json
-
       - name: Build, tag, and push docker image to Amazon ECR
         id: build-image
         env:
@@ -69,6 +64,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Replace ECR ID and IMAGE_TAG in Dockerrun.aws.json
+        run: |
+          sed -i "s#<ECR_ID>#${{ secrets.ECR_ID }}#g" Dockerrun.aws.json
+          sed -i "s#<IMAGE_TAG>#${{ env.IMAGE_TAG }}#g" Dockerrun.aws.json
+
       - name: Extract branch name and set as image tag
         id: extract-branch
         run: |
