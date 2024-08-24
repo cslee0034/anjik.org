@@ -50,6 +50,12 @@ export default function Document() {
 
         {/* Robots.txt 설정을 통해 검색 엔진 크롤링 제어 */}
         <meta name="robots" content="index, follow" />
+
+        {/* Google Search Console 등록 */}
+        <meta
+          name="google-site-verification"
+          content="pNuR7WBuj9c4p5Yv2TB2MagUkmV5kJdQKfPcaETZM-s"
+        />
       </Head>
       <body>
         <Main />

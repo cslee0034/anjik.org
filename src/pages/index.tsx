@@ -63,10 +63,6 @@ export default function Home() {
     <>
       <Head>
         <title>안전한 직구 안직 - 홈</title>
-        <meta
-          name="google-site-verification"
-          content="pNuR7WBuj9c4p5Yv2TB2MagUkmV5kJdQKfPcaETZM-s"
-        />
       </Head>
       {/* 플랫폼 필터 변경 */}
       <Tabs
