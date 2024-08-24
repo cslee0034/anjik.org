@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "anjik",
+    "Name": "<ECR_URL>",
     "Update": "true"
   },
   "Environment": {

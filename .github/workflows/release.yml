@@ -43,11 +43,17 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
+      - name: Replace ECR URL in Dockerrun.aws.json
+        run: |
+          sed -i "s#<ECR_URL>#${{ secrets.ECR_URL }}#g" Dockerrun.aws.json
+
       - name: Extract branch name and set as image tag
         id: extract-branch
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/release/}
           echo "IMAGE_TAG=${BRANCH_NAME}" >> $GITHUB_ENV
+          VERSION_LABEL=$(echo ${BRANCH_NAME} | tr '/' '-')
+          echo "VERSION_LABEL=${VERSION_LABEL}" >> $GITHUB_ENV
 
       - name: Build, tag, and push docker image to Amazon ECR
         id: build-image
