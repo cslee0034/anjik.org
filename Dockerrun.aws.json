@@ -1,0 +1,23 @@
+{
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "anjik",
+    "Update": "true"
+  },
+  "Environment": {
+    "NODE_ENV": "$NODE_ENV",
+    "NEXTAUTH_SECRET": "$NEXTAUTH_SECRET",
+    "NEXTAUTH_URL": "$NEXTAUTH_URL",
+    "NEXT_PUBLIC_GA_TAG": "$NEXT_PUBLIC_GA_TAG",
+    "GOOGLE_CLIENT_ID": "$GOOGLE_CLIENT_ID",
+    "GOOGLE_CLIENT_SECRET": "$GOOGLE_CLIENT_SECRET",
+    "MONGODB_URI": "$MONGODB_URI",
+    "SLACK_WEBHOOK_URL": "$SLACK_WEBHOOK_URL"
+  },
+  "Ports": [
+    {
+      "ContainerPort": 3000,
+      "HostPort": 443
+    }
+  ]
+}
