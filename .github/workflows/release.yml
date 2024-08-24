@@ -43,10 +43,6 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Replace ECR URL in Dockerrun.aws.json
-        run: |
-          sed -i "s#<ECR_URL>#${{ secrets.ECR_URL }}#g" Dockerrun.aws.json
-
       - name: Extract branch name and set as image tag
         id: extract-branch
         run: |
@@ -54,6 +50,12 @@ jobs:
           echo "IMAGE_TAG=${BRANCH_NAME}" >> $GITHUB_ENV
           VERSION_LABEL=$(echo ${BRANCH_NAME} | tr '/' '-')
           echo "VERSION_LABEL=${VERSION_LABEL}" >> $GITHUB_ENV
+
+      - name: Replace ECR ID and IMAGE_TAG in Dockerrun.aws.json
+        run: |
+          # ECR ID는 GitHub Secrets에서 가져오고, IMAGE_TAG는 동적으로 생성된 값을 사용
+          sed -i "s#<ECR_ID>#${{ secrets.ECR_ID }}#g" Dockerrun.aws.json
+          sed -i "s#<IMAGE_TAG>#${{ env.IMAGE_TAG }}#g" Dockerrun.aws.json
 
       - name: Build, tag, and push docker image to Amazon ECR
         id: build-image
