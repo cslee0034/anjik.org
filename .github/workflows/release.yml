@@ -74,7 +74,7 @@ jobs:
           application_name: ${{ secrets.AWS_EB_APPLICATION_NAME }}
           environment_name: ${{ secrets.AWS_EB_ENVIRONMENT_NAME }}
           region: ap-northeast-2
-          version_label: ${{ steps.build-image.outputs.image }}
+          version_label: ${{ env.VERSION_LABEL }}
           deployment_package: Dockerrun.aws.json
 
       - name: Deploy post notification
