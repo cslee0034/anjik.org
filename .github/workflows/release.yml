@@ -67,16 +67,16 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
 
-      - name: Replace ECR ID and IMAGE_TAG in Dockerrun.aws.json
-        run: |
-          sed -i "s#<ECR_ID>#${{ secrets.ECR_ID }}#g" Dockerrun.aws.json
-          sed -i "s#<IMAGE_TAG>#${{ env.IMAGE_TAG }}#g" Dockerrun.aws.json
-
       - name: Extract branch name and set as image tag
         id: extract-branch
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/release/}
           echo "IMAGE_TAG=${BRANCH_NAME}" >> $GITHUB_ENV
+
+      - name: Replace ECR ID and IMAGE_TAG in Dockerrun.aws.json
+        run: |
+          sed -i "s#<ECR_ID>#${{ secrets.ECR_ID }}#g" Dockerrun.aws.json
+          sed -i "s#<IMAGE_TAG>#${{ env.IMAGE_TAG }}#g" Dockerrun.aws.json
 
       - name: Deploy to Elastic Beanstalk
         uses: einaregilsson/beanstalk-deploy@v22
