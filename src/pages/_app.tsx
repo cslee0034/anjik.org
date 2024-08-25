@@ -20,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Footer />
         </SessionProvider>
       </QueryClientProvider>
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_TAG as string} />
+      <GoogleAnalytics gaId="G-7W5CWN5YW1" />
     </>
   );
 }
