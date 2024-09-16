@@ -9,4 +9,4 @@
 
 # 아키텍처
 
-![architecture](https://github.com/user-attachments/assets/29cfe302-d64c-4778-aa2c-9abf2160d145)
+![architecture](https://github.com/user-attachments/assets/0d3f9194-2131-4ab5-b33f-0e7949573c39)
